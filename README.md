@@ -1,53 +1,93 @@
-# AFAD
+# AFAD(a Fruit a Day)
+- 담당 역할 : **프론트엔드**
+- 한 줄 소개 : 1인 가구를 위한 과일 공동 구매 플랫폼
+- 진행 기간 : 2022년 10월 14일 ~ 2022년 11월 2일
+- 팀 구성 : 프론트엔드 2명, 백엔드 2명
 
+## 🔗 Links
+http://43.200.171.56:3000/
 
-<aside>
-💡 기획 초안 : a fruit a day (https://www.notion.so/1-a-fruit-a-day-2-b2d5764cb3e549c7a1b1325081f20202)
+## 📝 서비스 소개
+![AFAD_메인](https://user-images.githubusercontent.com/108252916/208396980-6d268cfc-0905-4537-b8e1-3b5b77221048.png)
+과일을 사먹기 힘든 **1인 가구**들이 좀 더 쉽게 과일을 살 수 있게 해주는 **공동 구매 플랫폼**
+1. 동네를 기반으로한 **과일 공동 구매 플랫폼 제공**
+2. 현금이 없어도 OK. 만나서는 과일만 나눌 수 있게 **결제 기능 제공**
+3. **채팅 기능**으로 사용자 간 원활한 소통 가능
 
-🖼️ 팀 피그마 : https://www.figma.com/file/C2aw3kshiXPRAtDr1C18NX/Untitled?node-id=3%3A22
+## 🛠️기술 스택
+**Front-End**
+- HTML, CSS, JavaSript(ES6), jQuery, React, Sass, axios
 
-🧭 PPT : [https://www.miricanvas.com/v/11cycol](https://www.miricanvas.com/v/11cycol)
+**Back-End**
+- Node.js, mongoDB
 
-📝 API 명세서 : https://hamayj.notion.site/API-cc8588e92a4940c19ea99300f12669f8
+**Tools**
+- Github, slack, Notion, Figma
 
-</aside>
+## 💻 담당한 부분
+### 마이페이지
+<img width="1920" alt="AFAD_마이페이지" src="https://user-images.githubusercontent.com/108252916/208397677-7ad5a2a2-4a9d-4d16-9c5a-db68763b0746.png">
 
-## 📖 서비스 소개
+- **레이아웃 구현**
+- **마이페이지**
+    - 로그인 성공일 때 기준으로 유저 정보를 가져와서(`useContext` 이용) 지역과 닉네임을 출력
+- **회원 탈퇴**
+    - 회원 탈퇴 버튼을 누르면 해당 API 주소로 axios 요청을 통해 탈퇴를 진행
+- **내가 작성한 글 목록**
+    - 삼항 연산자를 사용하여 현재 로그인한 user(`useContext` 이용)와 게시글을 작성한 user가 일치할 경우만 조회
 
-<aside>
-🐷 SeSAC 수업 중 진행한 두 번째 팀 프로젝트입니다. AFAD는 과일을 사먹기 힘든 1인 가구들이 소용량의 과일을 저렴하게 살 수 있게 해주는 `지역 기반 공동 구매 플랫폼` 입니다. 뿐만 아니라 현금이 없어도 사이트 내 `카드 결제 서비스`를 통해 거래를 간편하게 해주는 `결제 기능`을 제공하고 있습니다.
+### 회원정보 수정
+<img width="1920" alt="AFAD_회원정보 수정" src="https://user-images.githubusercontent.com/108252916/208397819-75f39a67-af39-493d-a691-ded149e4b582.png">
 
-</aside>
-
-## 🛠️ 사용 기술 및 라이브러리
-
-- HTML, SASS, Javascript
-- Node.js, express, jwt, import 결제모듈
-- mongoDB, Mongoose(ODM)
-
-## 📑 상세 페이지
-
-### - main page : slide형 main page. slick 라이브러리 사용.**
-  <img width="1551" alt="스크린샷 2022-11-23 오후 4 37 38" src="https://user-images.githubusercontent.com/99241228/203493400-267db27b-d45a-4792-a252-d98cf7005d2e.png">
-  <img width="1552" alt="스크린샷 2022-11-23 오후 4 37 53" src="https://user-images.githubusercontent.com/99241228/203493433-ad9ae6fb-9ad1-4df4-8892-f599c45c38f9.png">
-
+- **레이아웃 구현**
+- **회원정보 수정**
+    - 로그인 성공일 때 기준으로 유저 정보를 가져오고(`useContext` 이용), 초기값으로 지정하고(`useState` 이용), 아이디와 이름은 읽기 전용으로 삽입
+    - 수정 버튼을 누르면 axios 요청을 통해서 해당 API 주소로 변경된 유저 정보를 전송
+- **중복 검사 기능**
+    - 이메일과 닉네임 모두 axios 요청을 통해서 기존 데이터베이스와 비교하여 중복 검사 진행
     
+### 아이디 찾기
+![AFAD_아이디찾기](https://user-images.githubusercontent.com/108252916/208398042-d37f582f-bf39-484c-b6cc-6acb65271d48.gif)
 
----
+- **레이아웃 구현**
+    - axios 요청을 통해서 기존 데이터베이스를 검사하여 반환 값이 오면 몇 초 후 인증코드 입력 창 생성
+- **유효성 검사 기능 구현**
+    - 이메일: 이메일 형식 확인
+    - axios 요청을 통해서 기존 데이터베이스와 비교하여 중복 검사를 진행하고, 이메일이 존재하면 해당 API 주소로 이메일을 전달하여 메일로 인증 코드를 받음. 인증 완료 후 이메일과 매칭되는 아이디를 출력
 
-### - 공동 구매 page
-  <img width="1533" alt="스크린샷 2022-11-23 오후 4 39 45" src="https://user-images.githubusercontent.com/99241228/203493724-f5bf3ac6-8b39-406d-b1b8-779972740c52.png">
+### 비밀번호 변경
+- 비밀번호 변경 시에도 이메일 인증 기능을 사용하기 때문에 아이디 찾기를 진행한 후에 비밀번호 변경을 할 수 있도록 설정
+![AFAD_비밀번호변경](https://user-images.githubusercontent.com/108252916/208398313-6e8c0c76-e772-4fab-99cd-6846e8c1da45.gif)
 
+- **레이아웃 구현**
+- **유효성 검사 기능 구현**
+    - 비밀번호: 8~20자의 영문,숫자,특수문자(!@#$%^&*) 조합
+- **비밀번호 변경**
+    - 본인 인증시 받아온 아이디, 이메일을 미리 삽입(`useLocation` 이용), axios 요청을 통해 해당 API 주소로 변경한 비밀번호를 전송
 
+### 회원가입
+![AFAD_회원가입](https://user-images.githubusercontent.com/108252916/208839559-f5e63ae6-df72-4f3f-a1f1-763577942eb9.gif)
 
-### - 공동구매 상세 page :
-  <img width="1333" alt="스크린샷 2022-11-23 오후 4 40 24" src="https://user-images.githubusercontent.com/99241228/203493814-84692984-bccd-4293-918c-06f5c19580e2.png">
+- **레이아웃 구현**
+- **유효성 검사 기능 구현**
+    - 아이디, 비밀번호, 이메일 모두 <input> 태그의 pattern 속성을 사용하여 정규 표현식을 통한 유효성 검사
+        - **아이디**: 4~20자의 영문, 숫자 조합
+        - **비밀번호**: 8~20자의 영문,숫자,특수문자(!@#$%^&*) 조합
+        - **이메일**: 이메일 형식 확인
+- **중복 검사 기능**
+    - 아이디, 이메일, 닉네임 모두 axios 요청을 통해서 기존 데이터베이스와 비교하여 중복 검사 진행
+ 
+ ### 로그인
+ ![AFAD_로그인](https://user-images.githubusercontent.com/108252916/208839682-fb6542d3-8272-42dd-b27c-bc5426fa04d9.gif)
 
+- **레이아웃 구현**
+- **로그인 기능 구현**
+    - 아이디와 비밀번호를 입력받으면 값을 업데이트하고(`useState` 이용), axios 요청을 통해서 해당 API 주소로 값을 전송
 
-### - 결제 기능 page :
-  <img width="596" alt="스크린샷 2022-11-23 오후 4 43 18" src="https://user-images.githubusercontent.com/99241228/203494241-c2239d4b-28da-4fca-8c2e-97233a6c704f.png">
-  <img width="595" alt=<img width="602" alt="스크린샷 2022-11-23 오후 4 45 20" src="https://user-images.githubusercontent.com/99241228/203494511-e24c0187-f049-4f54-bc42-2be7b6768696.png">
-  <img width="595" alt="스크린샷 2022-11-23 오후 4 44 46" src="https://user-images.githubusercontent.com/99241228/203494426-93a7d975-4873-4971-b558-0f4b2633b96f.png">
-  
+### 작성한 게시글 수정
+<img width="1920" alt="게시글 수정 (2)" src="https://user-images.githubusercontent.com/108252916/208839832-d6932144-b84e-4e86-a233-71c82463f48b.png">
 
-
+- **게시글 수정**
+    - axios 요청을 통해서 해당 API 주소로 게시글 id에 적합한 내용 조회, 렌더링할 때 한번만 조회할 수 있도록 설정(`useEffect` 이용)
+    - 사진을 업로드 해야 하기 때문에 `FormData`객체를 이용하여 추가하는 형식으로 사용
+    - 수정 버튼을 누르면 axios 요청을 통해서 해당 API 주소로 `FormData` 전송
